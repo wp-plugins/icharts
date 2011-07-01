@@ -1,4 +1,4 @@
-=== iChart ===
+=== iCharts ===
 Contributors: icharts , dcoda
 Donate link: 
 Tags: charts,icharts, editor,data
