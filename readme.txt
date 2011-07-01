@@ -5,7 +5,7 @@ Tags: charts,icharts, editor,data
 Requires at least: 3.0
 Tested up to: 3.2
 Stable tag: .1.30
-
+ 
 icharts is a WordPress Plugin that allows you to easily insert an iChart in your post.
 
 == Description ==
