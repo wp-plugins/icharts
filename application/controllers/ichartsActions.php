@@ -91,7 +91,7 @@ class ichartsActions extends wv30v_action {
 		$http->data ( $data );
 		$page = $http->get ();
 		// roughly find the embed code
-		$page = substr ( $page, strpos ( $page, $id ) - 200, 700 );
+		$page = substr ( $page, strpos ( $page, $id ) - 200, 7000 );
 		// clean it up
 		$page = split ( '<input value="', $page );
 		$return = '';
@@ -122,7 +122,7 @@ class ichartsActions extends wv30v_action {
 		if ($pos === false) {
 			$pos = strpos ( $page, "Powered By: <a href = 'http://www.ichartsbusiness.com'>iCharts" );
 		}
-		$page = substr ( $page, $pos - 700, 1400 );
+		$page = substr ( $page, $pos - 700, 14000 );
 		$page = split ( '<object', $page );
 		$return = '';
 		if (count ( $page ) > 1) {
