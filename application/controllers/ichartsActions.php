@@ -1,5 +1,5 @@
 <?php
-class ichartsActions extends wv30v_action {
+class ichartsActions extends wv34v_action {
 	public function iChartsWPmenuMeta($return) {
 		$return ['title'] = 'iCharts';
 		return $return;
@@ -7,7 +7,7 @@ class ichartsActions extends wv30v_action {
 	public function getting_startedActionMeta($return) {
 		$return ['link_name'] = $return ['title'];
 		$return ['priority'] = 2;
-		$return ['classes'] [] = 'v30v_info';
+		$return ['classes'] [] = 'v34v_info';
 		return $return;
 	}
 	public function ichartsActionMeta($return) {
@@ -15,7 +15,7 @@ class ichartsActions extends wv30v_action {
 		$return ['link_name'] = $return ['title'];
 		$return ['priority'] = 3;
 		$return ['url'] = 'http://icharts.net';
-		$return ['classes'] [] = 'v30v_icharts';
+		$return ['classes'] [] = 'v34v_icharts';
 		return $return;
 	}
 	function mce_buttonsWPfilter($buttons) {
@@ -31,7 +31,7 @@ class ichartsActions extends wv30v_action {
 	}
 	public function admin_print_scriptsWPaction() {
 		wp_enqueue_script ( 'jquery' );
-		wp_enqueue_script ( 'v30v_script_js' );
+		wp_enqueue_script ( 'v34v_script_js' );
 		wp_enqueue_script ( 'icharts_script_js', $this->application ()->pluginuri () . '/application/public/js/script.js', null, $this->application ()->version () );
 		$data = array ('popup_url' => $this->control_url ( 'icharts/popup' ) );
 		wp_localize_script ( 'icharts_script_js', 'icharts_data', $data );
@@ -69,6 +69,9 @@ class ichartsActions extends wv30v_action {
 	private function method1($url) {
 		$id = $url;
 		$id = split ( 'sp=', $id );
+		if (count ( $id ) == 1) {
+			return false;
+		}
 		$id = split ( '=', $id [1] );
 		$id = $id [0] . '=';
 		// doesn't always work first attempt dso give it 2 tries
@@ -87,11 +90,12 @@ class ichartsActions extends wv30v_action {
 		$data ['page'] = 'TeamChartDetail';
 		$data ['sp'] = $id;
 		$data ['service'] = 'external';
-		$http = new bv30v_http ( $url );
+		$http = new bv34v_http ( $url );
 		$http->data ( $data );
 		$page = $http->get ();
 		// roughly find the embed code
-		$page = substr ( $page, strpos ( $page, $id ) - 200, 7000 );
+		$pos = strpos ( $page, 'id="embedCodeText"' );
+		$page = substr ( $page, $pos, 7000 );
 		// clean it up
 		$page = split ( '<input value="', $page );
 		$return = '';
@@ -114,21 +118,19 @@ class ichartsActions extends wv30v_action {
 			}
 		}
 		$url = $url [0];
-		$http = new bv30v_http ( $url );
+		$http = new bv34v_http ( $url );
 		$http->data ( $data );
 		$page = $http->get ();
 		// roughly find the object code
-		$pos = strpos ( $page, "Powered By: <a href = 'http://www.icharts.net'>iCharts" );
-		if ($pos === false) {
-			$pos = strpos ( $page, "Powered By: <a href = 'http://www.ichartsbusiness.com'>iCharts" );
-		}
+		//$pos = strpos ( $page, 'id="embedCodeText"' );
+		$pos = strpos ( $page, 'class="field-item even"' );
 		$page = substr ( $page, $pos - 700, 14000 );
-		$page = split ( '<object', $page );
+		$page = split ( '<iframe', $page );
 		$return = '';
 		if (count ( $page ) > 1) {
-			$page = "<object" . $page [1];
-			$page = split ( '</object>', $page );
-			$page = $page [0] . "</object>";
+			$page = "<iframe" . $page [1];
+			$page = split ( '</iframe>', $page );
+			$page = $page [0] . "</iframe>";
 			$return = $page;
 		}
 		return $return;
