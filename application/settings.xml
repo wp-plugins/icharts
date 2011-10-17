@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <settings>
 	<application>
-		<name>iChart</name><version>.2</version>
+		<name>iChart</name><version>.3demo</version>
 		<slug>ichart</slug>
 		<probono>0</probono>
 		<wordpress>

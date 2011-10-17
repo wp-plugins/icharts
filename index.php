@@ -1,10 +1,10 @@
 <?php /*
-Plugin Name: iChart
+Plugin Name: iCharts
 Plugin URI: http://dcoda.co.uk/wordpress/
 Description: Easily Insert iCharts into your post.
 Author: dcoda
 Author URI: http://dcoda.co.uk
-Version: .2.30
+Version: .3demo.34
  */ 
 require_once  dirname ( __FILE__ ) . '/library/wordpress/application.php';
 new wv34v_application ( __FILE__);
