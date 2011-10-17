@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+	<application>
+		<name>iChart</name><version>.2</version>
+		<slug>ichart</slug>
+		<probono>0</probono>
+		<wordpress>
+			<short_desc>Easily Insert iCharts into your post.</short_desc></wordpress></application></settings>
