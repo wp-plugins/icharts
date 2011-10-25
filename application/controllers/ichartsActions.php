@@ -36,9 +36,6 @@ class ichartsActions extends wv34v_action {
 		$data = array ('popup_url' => $this->control_url ( 'icharts/popup' ) );
 		wp_localize_script ( 'icharts_script_js', 'icharts_data', $data );
 	}
-	public function y() {
-		return 'a118243c7945400caa4b90d3b35cb0fb';
-	}
 	public function popupWPpageMeta($return) {
 		$return ['slug'] = 'icharts/popup';
 		return $return;
@@ -98,7 +95,7 @@ class ichartsActions extends wv34v_action {
 		$page = $http->get ();
 		// roughly find the embed code
 		$pos = strpos ( $page, 'id="embedCodeText"' );
-		$page = substr ( $page, $pos, 7000 );
+		$page = substr ( $page, $pos, 70000 );
 		// clean it up
 		$page = split ( '<input value="', $page );
 		$return = '';
