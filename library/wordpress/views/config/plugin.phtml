@@ -1,0 +1,14 @@
+/*
+Plugin Name: <?php echo $this->application()->name."\n";?>
+<?php if(!empty($this->application()->wordpress->short_desc)):?>
+Plugin URI: <?php echo $this->application()->wordpress->uri."\n";?>
+<?php endif;?>
+Description: <?php echo $this->application()->wordpress->short_desc."\n";?>
+Author: <?php echo $this->application()->author."\n";?>
+Author URI: <?php echo $this->application()->author_uri."\n";?>
+Version: <?php echo $this->version."\n";?>
+ */ 
+require_once  dirname ( __FILE__ ) . '/<?php echo  $this->load;?>.php';
+<?php foreach((array) $this->application()->include as $include):?>@include_once (<?php echo $include;?>);
+<?php endforeach;	?>
+new <?php echo  $this->application()->classes->application;?> ( __FILE__);

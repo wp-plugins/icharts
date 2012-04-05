@@ -1,0 +1,8 @@
+=== <?php echo $this->application()->name;?> ===
+Contributors: <?php echo $this->application()->author."\n";?>
+Donate link: <?php echo $this->application()->wordpress->donate_link."\n";?>
+Tags: <?php echo implode(', ',$this->application()->wordpress->tags)."\n";?>
+Requires at least: <?php echo $this->application()->wordpress->at_least."\n";?>
+Tested up to: <?php echo $this->application()->wordpress->up_to."\n";?>
+Stable tag: <?php echo $this->application()->wordpress->stable_tag."\n";?>
+<?php echo $this->application()->wordpress->short_desc."\n";?>
